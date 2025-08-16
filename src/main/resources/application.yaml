@@ -1,5 +1,16 @@
 spring:
   application.name: service-gateway
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: profile-service
+              uri: lb://${PROFILE_SERVICE_NAME}
+              predicates:
+                - Path=/profile/**
+              filters:
+                - StripPrefix=1
 
 server:
   port: 8080
