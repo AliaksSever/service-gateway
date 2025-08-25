@@ -11,6 +11,12 @@ spring:
                 - Path=/profile/**
               filters:
                 - StripPrefix=1
+            - id: admin-service
+              uri: lb://${ADMIN_SERVICE_NAME}
+              predicates:
+                - Path=/admin/**
+              filters:
+                - StripPrefix=1
 
 server:
   port: 8080
